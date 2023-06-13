@@ -29,3 +29,6 @@
 
 # Docu
 documentation/html/
+
+.vscode
+build
