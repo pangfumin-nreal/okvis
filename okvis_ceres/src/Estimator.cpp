@@ -480,6 +480,8 @@ bool Estimator::applyMarginalizationStrategy(
     ++rit;// check the next frame
   }
 
+  std::cout << "removeFrames: " << removeFrames.size() << " " << removeAllButPose.size() << std::endl;
+
   // marginalize everything but pose:
   for(size_t k = 0; k<removeAllButPose.size(); ++k){
     std::map<uint64_t, States>::iterator it = statesMap_.find(removeAllButPose[k]);
