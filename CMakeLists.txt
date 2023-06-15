@@ -16,7 +16,7 @@ option (USE_SYSTEM_CERES
 option (BUILD_APPS
         "Builds a demo app (which requires boost)" ON) 
 option (BUILD_TESTS
-        "Builds all gtests" OFF) 
+        "Builds all gtests" ON) 
 SET(N_CORES 3 CACHE STRING "Using N number of cores for parallel build")
 
 # Offer the user the choice of overriding the installation directories
@@ -215,8 +215,9 @@ set(CMAKE_CXX_FLAGS_WSUPPRESS
       "${CMAKE_CXX_FLAGS} -Wno-unused-parameter -Wno-maybe-uninitialized -Wno-sign-compare -Wno-unused-but-set-variable -Wno-unused-variable -Wno-pedantic")
 message(STATUS "NOTE: Suppressing some warnings when compiling OpenGV.")
 ExternalProject_Add(opengv_external
-    GIT_REPOSITORY https://github.com/laurentkneip/opengv
-    GIT_TAG cc32b16281aa6eab67cb28a61cf87a2a5c2b0961
+    # GIT_REPOSITORY https://github.com/laurentkneip/opengv
+    # GIT_TAG cc32b16281aa6eab67cb28a61cf87a2a5c2b0961
+    URL file://${CMAKE_SOURCE_DIR}/3rdparts/opengv/opengv_cc32b16281aa6eab67cb28a61cf87a2a5c2b0961.zip
     UPDATE_COMMAND ""
     PATCH_COMMAND # forcing static libs
         COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/cmake/opengv/CMakeLists.txt ${CMAKE_CURRENT_BINARY_DIR}/opengv/src/opengv/CMakeLists.txt
@@ -251,7 +252,9 @@ if(${BUILD_TESTS})
   # http://stackoverflow.com/questions/9689183/cmake-googletest
   ExternalProject_Add(
     googlemock
-    URL https://googlemock.googlecode.com/files/gmock-1.7.0.zip
+    # URL https://googlemock.googlecode.com/files/gmock-1.7.0.zip
+    URL file://${CMAKE_SOURCE_DIR}/3rdparts/gmock/googlemock-release-1.7.0.zip
+    
     PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gmock
     CMAKE_ARGS -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS} -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
     BUILD_COMMAND make -j${N_CORES}
