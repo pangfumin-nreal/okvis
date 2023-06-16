@@ -21,10 +21,10 @@ add_library(${PROJECT_NAME}
   src/MarginalizationError.cpp
   src/HomogeneousPointError.cpp
   src/Estimator.cpp
+  src/Marginalization.cpp
   src/LocalParamizationAdditionalInterfaces.cpp
   include/okvis/Estimator.hpp
-  include/okvis/ceres/CeresIterationCallback.hpp
-)
+  include/okvis/ceres/CeresIterationCallback.hpp)
 
 # and link it
 target_link_libraries(${PROJECT_NAME} 

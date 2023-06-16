@@ -81,6 +81,7 @@ template<class GEOMETRY_TYPE>
           statesMap_.at(poseId).sensors.at(SensorStates::Camera).at(camIdx).at(
               CameraSensorStates::T_SCi).id));
 
+
   // remember
   landmarksMap_.at(landmarkId).observations.insert(
       std::pair<okvis::KeypointIdentifier, uint64_t>(

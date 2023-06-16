@@ -354,7 +354,7 @@ class MarginalizationError : public ::ceres::CostFunction, public ErrorInterface
       if (parameterBlockPtr->fixed()) {
         minimalDimension = 0;
         localDimension = 0;
-		  }
+      }
       linearizationPoint.reset(new double[dimension],
                                std::default_delete<double[]>());
       memcpy(linearizationPoint.get(), parameterBlockPtr->parameters(),

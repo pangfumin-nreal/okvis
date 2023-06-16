@@ -172,7 +172,15 @@ class Estimator : public VioBackendInterface
   bool removeObservation(uint64_t landmarkId, uint64_t poseId,  size_t camIdx,
                          size_t keypointIdx);
 
-  /**
+
+
+  bool collectParametersToMargianlize(size_t numKeyframes, size_t numImuFrames,
+                                   std::vector<uint64_t>& paremeterBlocksToBeMarginalized,
+                                   std::vector<bool>& keepParameterBlocks,
+                                   okvis::MapPointVector& removedLandmarks,
+                                   bool& reDoFixation);
+
+    /**
    * @brief Applies the dropping/marginalization strategy according to the RSS'13/IJRR'14 paper.
    *        The new number of frames in the window will be numKeyframes+numImuFrames.
    * @param numKeyframes Number of keyframes.
@@ -180,6 +188,7 @@ class Estimator : public VioBackendInterface
    * @param removedLandmarks Get the landmarks that were removed by this operation.
    * @return True if successful.
    */
+
   bool applyMarginalizationStrategy(size_t numKeyframes, size_t numImuFrames,
                                     okvis::MapPointVector& removedLandmarks);
 
